@@ -12,6 +12,9 @@ public class Scrap extends BaseEntity{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private String url;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -21,8 +24,8 @@ public class Scrap extends BaseEntity{
     private Article article;
 
     @Builder
-    public Scrap(Long id, User user, Article article) {
-        this.id = id;
+    public Scrap(String url, User user, Article article) {
+        this.url = url;
         this.user = user;
         this.article = article;
     }
