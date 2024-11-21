@@ -34,7 +34,7 @@ public class ScrapRepositoryTest {
     @BeforeEach
     void beforeEach(){
         user = User.builder()
-                .user_name("aaa")
+                .username("aaa")
                 .email("aaa@gmail.com")
                 .refreshToken("abcd")
                 .social(User.SocialLogin.KAKAO)

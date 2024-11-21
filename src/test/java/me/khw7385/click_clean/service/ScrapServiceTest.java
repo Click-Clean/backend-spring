@@ -49,7 +49,7 @@ public class ScrapServiceTest {
     @BeforeEach
     void beforeEach(){
         user = User.builder()
-                .user_name("사용자1")
+                .username("사용자1")
                 .email("user@gmail.com")
                 .refreshToken("abcde")
                 .social(User.SocialLogin.KAKAO)

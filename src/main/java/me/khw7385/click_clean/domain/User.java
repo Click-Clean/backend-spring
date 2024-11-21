@@ -18,7 +18,7 @@ public class User extends BaseEntity{
     private Long id;
 
     @Column(nullable = false)
-    private String user_name;
+    private String username;
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
@@ -39,9 +39,9 @@ public class User extends BaseEntity{
     }
 
     @Builder
-    public User(Long id, String user_name, String email, String refreshToken, SocialLogin social) {
+    public User(Long id, String username, String email, String refreshToken, SocialLogin social) {
         this.id = id;
-        this.user_name = user_name;
+        this.username = username;
         this.email = email;
         this.refreshToken = refreshToken;
         this.social = social;
