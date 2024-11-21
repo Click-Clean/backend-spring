@@ -45,7 +45,7 @@ public class ScrapRepositoryTest {
                 .body("뉴스 내용1")
                 .summary("뉴스 요약1")
                 .media("언론사1")
-                .category(Category.SOCIAL)
+                .category(Category.SOCIETY)
                 .author("기자1")
                 .probability(BigDecimal.valueOf(11.1))
                 .build();
@@ -54,7 +54,7 @@ public class ScrapRepositoryTest {
                 .body("뉴스 내용2")
                 .summary("뉴스 요약2")
                 .media("언론사2")
-                .category(Category.SOCIAL)
+                .category(Category.SOCIETY)
                 .author("기자2")
                 .probability(BigDecimal.valueOf(22.2))
                 .build();
