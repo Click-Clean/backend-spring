@@ -39,7 +39,7 @@ public class ScrapService {
         return toResponseList(scraps);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public void removeScrap(ScrapDto.Command command){
         Scrap scrap = scrapRepository.findById(command.scrapId()).orElseThrow(() -> new ClickCleanException(ScrapErrorCode.SCRAP_NOT_FOUND_ERROR));
         scrapRepository.remove(scrap);
