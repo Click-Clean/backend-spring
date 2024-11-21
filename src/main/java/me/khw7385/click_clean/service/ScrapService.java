@@ -28,7 +28,9 @@ public class ScrapService {
     public void saveScrap(ScrapDto.Command command){
         User user = userRepository.findById(command.userId()).orElseThrow(() -> new ClickCleanException(UserErrorCode.USER_NOT_FOUND_ERROR));
         Article article = articleRepository.findById(command.articleId()).orElseThrow(() -> new ClickCleanException(ArticleErrorCode.ARTICLE_NOT_FOUND_ERROR));
-
+        if(scrapRepository.findByUserAndArticle(user, article).isPresent()){
+            throw new ClickCleanException(ScrapErrorCode.SCRAP_ALREADY_EXISTS_ERROR);
+        }
         scrapRepository.save(toEntity(command, user, article));
     }
 
