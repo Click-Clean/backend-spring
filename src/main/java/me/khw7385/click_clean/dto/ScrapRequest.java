@@ -6,11 +6,11 @@ import me.khw7385.click_clean.domain.Scrap;
 
 @Getter
 public class ScrapRequest {
-    private Long user_id;
-    private Long article_id;
+    private Long userId;
+    private Long articleId;
     @Builder
-    public ScrapRequest(Long user_id, Long article_id) {
-        this.user_id = user_id;
-        this.article_id = article_id;
+    public ScrapRequest(Long userId, Long articleId) {
+        this.userId = userId;
+        this.articleId = articleId;
     }
 }
