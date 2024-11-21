@@ -47,6 +47,7 @@ public class ScrapRepositoryTest {
                 .media("언론사1")
                 .category(Category.SOCIETY)
                 .author("기자1")
+                .url("기사1.com")
                 .probability(BigDecimal.valueOf(11.1))
                 .build();
         article2 = Article.builder()
@@ -56,12 +57,33 @@ public class ScrapRepositoryTest {
                 .media("언론사2")
                 .category(Category.SOCIETY)
                 .author("기자2")
+                .url("기사2.com")
                 .probability(BigDecimal.valueOf(22.2))
                 .build();
 
         em.persist(user);
         em.persist(article1);
         em.persist(article2);
+    }
+
+    @Test
+    @DisplayName("사용자 아이디와 기사 아이디로 스크렙 데이터 조회, 이 때 스크랩 데이터는 없을 수도 있다.")
+    void findByUserAndArticle(){
+        //given
+        Scrap scrap1 = Scrap.builder()
+                .user(user)
+                .article(article1)
+                .build();
+
+        scrapRepository.save(scrap1);
+
+        //when
+        Scrap foundScrap1 = scrapRepository.findByUserAndArticle(user, article1).get();
+        Scrap foundScrap2 = scrapRepository.findByUserAndArticle(user, article2).orElse(null);
+
+        //then
+        Assertions.assertThat(foundScrap1).isNotNull();
+        Assertions.assertThat(foundScrap2).isNull();
     }
 
     @Test
