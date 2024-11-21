@@ -4,8 +4,7 @@ import lombok.RequiredArgsConstructor;
 import me.khw7385.click_clean.domain.Article;
 import me.khw7385.click_clean.domain.Scrap;
 import me.khw7385.click_clean.domain.User;
-import me.khw7385.click_clean.dto.ScrapRequest;
-import me.khw7385.click_clean.dto.ScrapResponse;
+import me.khw7385.click_clean.dto.ScrapDto;
 import me.khw7385.click_clean.exception.ClickCleanException;
 import me.khw7385.click_clean.exception.error_code.ArticleErrorCode;
 import me.khw7385.click_clean.exception.error_code.UserErrorCode;
@@ -25,40 +24,42 @@ public class ScrapService {
     private final ArticleRepository articleRepository;
 
     @Transactional
-    public void saveScrap(ScrapRequest scrapRequest){
-        User user = userRepository.findById(scrapRequest.getUserId()).orElseThrow(() -> new ClickCleanException(UserErrorCode.USER_NOT_FOUND_ERROR));
-        Article article = articleRepository.findById(scrapRequest.getArticleId()).orElseThrow(() -> new ClickCleanException(ArticleErrorCode.ARTICLE_NOT_FOUND_ERROR));
+    public void saveScrap(ScrapDto.Command command){
+        User user = userRepository.findById(command.userId()).orElseThrow(() -> new ClickCleanException(UserErrorCode.USER_NOT_FOUND_ERROR));
+        Article article = articleRepository.findById(command.articleId()).orElseThrow(() -> new ClickCleanException(ArticleErrorCode.ARTICLE_NOT_FOUND_ERROR));
 
-        scrapRepository.save(toEntity(scrapRequest, user, article));
+        scrapRepository.save(toEntity(command, user, article));
     }
 
     @Transactional(readOnly = true)
-    public List<ScrapResponse> findScraps(ScrapRequest scrapRequest, int page, int size){
-        User user = userRepository.findById(scrapRequest.getUserId()).orElseThrow(() -> new ClickCleanException(UserErrorCode.USER_NOT_FOUND_ERROR));
+    public List<ScrapDto.Response> findScraps(ScrapDto.Command command, int page, int size){
+        User user = userRepository.findById(command.userId()).orElseThrow(() -> new ClickCleanException(UserErrorCode.USER_NOT_FOUND_ERROR));
         List<Scrap> scraps = scrapRepository.findScrapsByUser(user, page, size);
         return toResponseList(scraps);
     }
 
-    private Scrap toEntity(ScrapRequest scrapRequest, User user, Article article){
+    private Scrap toEntity(ScrapDto.Command scrapCommand, User user, Article article){
         return Scrap.builder()
                 .user(user)
                 .article(article)
                 .build();
     }
-
-    private List<ScrapResponse> toResponseList(List<Scrap> scraps){
+    private ScrapDto.Response toResponse(Scrap scrap){
+        Article article = scrap.getArticle();
+        return ScrapDto.Response.builder()
+                .articleId(article.getId())
+                .title(article.getTitle())
+                .summary(article.getSummary())
+                .media(article.getMedia())
+                .category(article.getCategory().getKoreanName())
+                .author(article.getAuthor())
+                .createdAt(article.getCreatedAt())
+                .probability(article.getProbability())
+                .build();
+    }
+    private List<ScrapDto.Response> toResponseList(List<Scrap> scraps){
         return scraps.stream()
-                .map(s -> ScrapResponse
-                        .builder()
-                        .articleId(s.getArticle().getId())
-                        .title(s.getArticle().getTitle())
-                        .summary(s.getArticle().getSummary())
-                        .media(s.getArticle().getMedia())
-                        .category(s.getArticle().getCategory().getKoreanName())
-                        .author(s.getArticle().getAuthor())
-                        .createdAt(s.getArticle().getCreatedAt())
-                        .probability(s.getArticle().getProbability())
-                        .build()
-                ).toList();
+                .map(this::toResponse)
+                .toList();
     }
 }
