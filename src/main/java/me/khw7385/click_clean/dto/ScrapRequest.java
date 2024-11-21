@@ -2,7 +2,6 @@ package me.khw7385.click_clean.dto;
 
 import lombok.Builder;
 import lombok.Getter;
-import me.khw7385.click_clean.domain.Scrap;
 
 @Getter
 public class ScrapRequest {
