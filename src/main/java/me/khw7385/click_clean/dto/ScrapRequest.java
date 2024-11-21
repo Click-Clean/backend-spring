@@ -8,11 +8,9 @@ import me.khw7385.click_clean.domain.Scrap;
 public class ScrapRequest {
     private Long user_id;
     private Long article_id;
-    private String url;
     @Builder
-    public ScrapRequest(Long user_id, Long article_id, String url) {
+    public ScrapRequest(Long user_id, Long article_id) {
         this.user_id = user_id;
         this.article_id = article_id;
-        this.url = url;
     }
 }

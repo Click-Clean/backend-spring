@@ -71,13 +71,11 @@ public class ScrapRepositoryTest {
         Scrap scrap1 = Scrap.builder()
                 .user(user)
                 .article(article1)
-                .url("https://url1")
                 .build();
 
         Scrap scrap2 = Scrap.builder()
                 .user(user)
                 .article(article2)
-                .url("https://url2")
                 .build();
 
 
