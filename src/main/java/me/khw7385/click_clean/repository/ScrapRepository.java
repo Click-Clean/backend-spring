@@ -18,6 +18,8 @@ public class ScrapRepository {
         em.persist(scrap);
     }
 
+    public void remove(Scrap scrap){em.remove(scrap);}
+
     public Optional<Scrap> findById(long id){
         Scrap scrap = em.find(Scrap.class, id);
         return Optional.of(scrap);

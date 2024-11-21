@@ -7,6 +7,7 @@ import me.khw7385.click_clean.domain.User;
 import me.khw7385.click_clean.dto.ScrapDto;
 import me.khw7385.click_clean.exception.ClickCleanException;
 import me.khw7385.click_clean.exception.error_code.ArticleErrorCode;
+import me.khw7385.click_clean.exception.error_code.ScrapErrorCode;
 import me.khw7385.click_clean.exception.error_code.UserErrorCode;
 import me.khw7385.click_clean.repository.ArticleRepository;
 import me.khw7385.click_clean.repository.ScrapRepository;
@@ -36,6 +37,12 @@ public class ScrapService {
         User user = userRepository.findById(command.userId()).orElseThrow(() -> new ClickCleanException(UserErrorCode.USER_NOT_FOUND_ERROR));
         List<Scrap> scraps = scrapRepository.findScrapsByUser(user, page, size);
         return toResponseList(scraps);
+    }
+
+    @Transactional(readOnly = true)
+    public void removeScrap(ScrapDto.Command command){
+        Scrap scrap = scrapRepository.findById(command.scrapId()).orElseThrow(() -> new ClickCleanException(ScrapErrorCode.SCRAP_NOT_FOUND_ERROR));
+        scrapRepository.remove(scrap);
     }
 
     private Scrap toEntity(ScrapDto.Command scrapCommand, User user, Article article){
