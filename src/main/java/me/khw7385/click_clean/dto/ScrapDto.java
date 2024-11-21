@@ -9,8 +9,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class ScrapDto {
-    public record Request(Long scrapId, Long userId, Long articleId){
-        public Command toCommand(){
+    public record Request(Long scrapId, Long articleId){
+        public Command toCommand(Long userId){
             return new Command(scrapId, userId, articleId);
         }
     }
