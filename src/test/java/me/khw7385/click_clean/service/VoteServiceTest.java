@@ -8,6 +8,7 @@ import me.khw7385.click_clean.dto.VoteDto;
 import me.khw7385.click_clean.exception.ClickCleanException;
 import me.khw7385.click_clean.exception.error_code.VoteErrorCode;
 import me.khw7385.click_clean.repository.ArticleRepository;
+import me.khw7385.click_clean.repository.ArticleRepositoryTest;
 import me.khw7385.click_clean.repository.UserRepository;
 import me.khw7385.click_clean.repository.VoteRepository;
 import org.assertj.core.api.Assertions;
