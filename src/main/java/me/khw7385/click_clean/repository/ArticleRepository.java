@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import me.khw7385.click_clean.domain.Article;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -14,5 +15,13 @@ public class ArticleRepository {
 
     public Optional<Article> findById(long id){
         return Optional.of(em.find(Article.class, id));
+    }
+
+    public List<Article> findArticlesByKeywordOrderByCreatedAtDesc(String keyword, int page, int size){
+        return em.createQuery("SELECT a FROM Article a WHERE a.title LIKE CONCAT('%', :keyword, '%') OR a.body LIKE CONCAT('%', :keyword, '%') ORDER BY a.createdAt desc", Article.class)
+                .setParameter("keyword", keyword)
+                .setFirstResult(page * size)
+                .setMaxResults(size)
+                .getResultList();
     }
 }
