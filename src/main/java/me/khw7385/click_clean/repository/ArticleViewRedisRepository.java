@@ -18,19 +18,19 @@ import java.util.stream.Collectors;
 public class ArticleViewRedisRepository {
     private final RedisTemplate<String, String> redisTemplate;
 
-    public void saveView(Long userId, Long articleId){
+    public void saveView(String userId, Long articleId){
         ValueOperations<String, String> operations = redisTemplate.opsForValue();
 
         String key = "article:" + articleId + ":user:"+userId;
         operations.set(key, "viewed", 1, TimeUnit.MINUTES);
     }
 
-    public boolean isViewed(Long userId, Long articleId){
+    public boolean isViewed(String userId, Long articleId){
         String key = "article:" + articleId + ":user:"+userId;
         return Boolean.TRUE.equals(redisTemplate.hasKey(key));
     }
 
-    public void extendExpiration(Long userId, Long articleId){
+    public void extendExpiration(String userId, Long articleId){
         String key = "article:" + articleId + ":user:"+userId;
         redisTemplate.expire(key, Duration.ofMinutes(1));
     }

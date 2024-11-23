@@ -17,6 +17,12 @@ public class ArticleRepository {
         return Optional.of(em.find(Article.class, id));
     }
 
+    public List<Article> findArticlesByIds(List<Long> ids){
+        return em.createQuery("SELECT a FROM Article a WHERE a.id IN :ids", Article.class)
+                .setParameter("ids", ids)
+                .getResultList();
+    }
+
     public List<Article> findArticlesByKeywordOrderByCreatedAtDesc(String keyword, int page, int size){
         return em.createQuery("SELECT a FROM Article a WHERE a.title LIKE CONCAT('%', :keyword, '%') OR a.body LIKE CONCAT('%', :keyword, '%') ORDER BY a.createdAt desc", Article.class)
                 .setParameter("keyword", keyword)
