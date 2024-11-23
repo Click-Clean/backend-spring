@@ -4,5 +4,5 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
-public record Result(int status, Object data) {
+public record Result<T>(int status, T data) {
 }
