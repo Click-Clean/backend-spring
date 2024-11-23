@@ -29,6 +29,7 @@ public class ArticleViewService {
             articleViewRedisRepository.extendExpiration(command.userViewId(), command.articleId());
         }else{
             articleViewRedisRepository.saveView(command.userViewId(), command.articleId());
+            articleViewRedisRepository.incrementViewCount(command.articleId());
         }
 
         return toArticleResponse(article);

@@ -27,7 +27,7 @@ public class ArticleViewRedisRepositoryTest {
         // given
         String key = "article:1:user:1";
         // when
-        articleViewRedisRepository.saveView(1L, 1L);
+        articleViewRedisRepository.saveView("a", 1L);
         // then
         Assertions.assertThat(redisTemplate.opsForValue().get(key)).isEqualTo("viewed");
     }
@@ -35,10 +35,10 @@ public class ArticleViewRedisRepositoryTest {
     @Test
     void isViewed(){
         // given
-        articleViewRedisRepository.saveView(1L, 1L);
+        articleViewRedisRepository.saveView("a", 1L);
 
         // when
-        boolean hasView = articleViewRedisRepository.isViewed(1L, 1L);
+        boolean hasView = articleViewRedisRepository.isViewed("a", 1L);
 
         // then
         Assertions.assertThat(hasView).isTrue();

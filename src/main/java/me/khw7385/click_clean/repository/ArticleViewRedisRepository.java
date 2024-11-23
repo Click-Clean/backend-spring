@@ -2,6 +2,7 @@ package me.khw7385.click_clean.repository;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Repository;
@@ -38,6 +39,14 @@ public class ArticleViewRedisRepository {
     public void incrementViewCount(Long articleId){
         String key = "article:views";
         redisTemplate.opsForZSet().incrementScore(key, articleId.toString(), 1);
+    }
+
+    public void decrementViewCount(Long articleId){
+        String key = "article:views";
+        Double score = redisTemplate.opsForZSet().score(key, articleId.toString());
+        if(score != null && score > 0){
+            redisTemplate.opsForZSet().incrementScore(key, articleId.toString(), -1);
+        }
     }
 
     public List<Long> findArticlesTop5(){

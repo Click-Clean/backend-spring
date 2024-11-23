@@ -16,7 +16,7 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 public class ArticleViewController {
-    private ArticleViewService articleViewService;
+    private final ArticleViewService articleViewService;
 
     @GetMapping("/api/article/{id}")
     public ResponseEntity<Result> getArticle(@PathVariable("id")Long articleId, @CookieValue(value = "userViewId", required = false)String userViewId, HttpServletResponse servletResponse) {
