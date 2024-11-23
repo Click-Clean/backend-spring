@@ -17,14 +17,14 @@ public class ScrapController {
     private final ScrapService scrapService;
 
     @PostMapping("/api/scrap/save")
-    public ResponseEntity<Result> createScrap(@RequestBody ScrapDto.Request request, @RequestParam("user_id") Long userId){
+    public ResponseEntity<Result> createScrap(@RequestBody ScrapDto.Request request, @RequestParam("userId") Long userId){
         scrapService.saveScrap(request.toCommand(userId));
 
         return ResponseEntity.ok(new Result(HttpStatus.CREATED.value(), null));
     }
 
     @GetMapping("/api/scraps")
-    public ResponseEntity<PageResult> getScraps(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("user_id") Long userId){
+    public ResponseEntity<PageResult> getScraps(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("userId") Long userId){
         List<ScrapDto.Response> scraps = scrapService.findScraps(new ScrapDto.Command(null, userId, null), page, size);
         return ResponseEntity.ok(new PageResult(HttpStatus.OK.value(), page, scraps.size(), scraps));
     }

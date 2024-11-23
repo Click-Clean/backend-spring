@@ -14,7 +14,7 @@ public class ArticleRepository {
     private final EntityManager em;
 
     public Optional<Article> findById(long id){
-        return Optional.of(em.find(Article.class, id));
+        return Optional.ofNullable(em.find(Article.class, id));
     }
 
     public List<Article> findArticlesByIds(List<Long> ids){

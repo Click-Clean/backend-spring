@@ -12,6 +12,6 @@ import java.util.Optional;
 public class UserRepository {
     private final EntityManager em;
     public Optional<User> findById(long id){
-        return Optional.of(em.find(User.class, id));
+        return Optional.ofNullable(em.find(User.class, id));
     }
 }

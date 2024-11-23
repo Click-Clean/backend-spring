@@ -23,7 +23,7 @@ public class ScrapRepository {
 
     public Optional<Scrap> findById(long id){
         Scrap scrap = em.find(Scrap.class, id);
-        return Optional.of(scrap);
+        return Optional.ofNullable(scrap);
     }
 
     public Optional<Scrap> findByUserAndArticle(User user, Article article){
