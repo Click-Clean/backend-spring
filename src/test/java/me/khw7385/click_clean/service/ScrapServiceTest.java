@@ -1,14 +1,12 @@
 package me.khw7385.click_clean.service;
 
 import me.khw7385.click_clean.domain.Article;
-import me.khw7385.click_clean.domain.Category;
 import me.khw7385.click_clean.domain.Scrap;
 import me.khw7385.click_clean.domain.User;
 import me.khw7385.click_clean.dto.ScrapDto;
 import me.khw7385.click_clean.exception.ClickCleanException;
 import me.khw7385.click_clean.exception.error_code.ScrapErrorCode;
 import me.khw7385.click_clean.repository.ArticleRepository;
-import me.khw7385.click_clean.repository.ArticleRepositoryTest;
 import me.khw7385.click_clean.repository.ScrapRepository;
 import me.khw7385.click_clean.repository.UserRepository;
 import org.assertj.core.api.Assertions;
@@ -56,7 +54,7 @@ public class ScrapServiceTest {
                 .title("기사1")
                 .summary("요약1")
                 .media("언론사1")
-                .category(Category.ECONOMY)
+                .category("경제")
                 .author("작가1")
                 .probability(BigDecimal.valueOf(52.4))
                 .build();
@@ -65,7 +63,7 @@ public class ScrapServiceTest {
                 .title("기사2")
                 .summary("요약2")
                 .media("언론사2")
-                .category(Category.SOCIETY)
+                .category("경제")
                 .author("작가2")
                 .probability(BigDecimal.valueOf(75.8))
                 .build();

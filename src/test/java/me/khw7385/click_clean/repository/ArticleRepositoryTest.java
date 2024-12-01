@@ -2,8 +2,6 @@ package me.khw7385.click_clean.repository;
 
 import me.khw7385.click_clean.config.TestConfig;
 import me.khw7385.click_clean.domain.Article;
-import me.khw7385.click_clean.domain.Category;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +40,7 @@ public class ArticleRepositoryTest {
                     .summary("summary")
                     .author("author")
                     .probability(BigDecimal.valueOf(75.4))
-                    .category(Category.SOCIETY)
+                    .category("사회")
                     .build();
             articles.add(article);
             em.persist(article);

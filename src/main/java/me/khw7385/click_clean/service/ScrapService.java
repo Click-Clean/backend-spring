@@ -60,7 +60,7 @@ public class ScrapService {
                 .title(article.getTitle())
                 .summary(article.getSummary())
                 .media(article.getMedia())
-                .category(article.getCategory().getKoreanName())
+                .category(article.getCategory())
                 .author(article.getAuthor())
                 .createdAt(article.getCreatedAt())
                 .probability(article.getProbability())

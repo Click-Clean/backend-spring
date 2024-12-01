@@ -2,10 +2,8 @@ package me.khw7385.click_clean.repository;
 
 import me.khw7385.click_clean.config.TestConfig;
 import me.khw7385.click_clean.domain.Article;
-import me.khw7385.click_clean.domain.Category;
 import me.khw7385.click_clean.domain.User;
 import me.khw7385.click_clean.domain.Vote;
-import org.aspectj.lang.annotation.Before;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -49,7 +47,7 @@ public class VoteRepositoryTest {
                 .body("뉴스 내용1")
                 .summary("뉴스 요약1")
                 .media("언론사1")
-                .category(Category.SOCIETY)
+                .category("사회")
                 .author("기자1")
                 .url("기사1.com")
                 .probability(BigDecimal.valueOf(11.1))

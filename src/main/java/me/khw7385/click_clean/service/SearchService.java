@@ -27,7 +27,7 @@ public class SearchService {
                 .summary(article.getSummary())
                 .author(article.getAuthor())
                 .media(article.getMedia())
-                .category(article.getCategory().getKoreanName())
+                .category(article.getCategory())
                 .createdAt(article.getCreatedAt())
                 .probability(article.getProbability())
                 .build();

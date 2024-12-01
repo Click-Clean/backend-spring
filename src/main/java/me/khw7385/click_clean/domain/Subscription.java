@@ -10,9 +10,8 @@ public class Subscription extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(value = EnumType.STRING)
     @Column(nullable = false)
-    private Category category;
+    private String category;
 
     @Column(nullable = false)
     private String media;
@@ -26,7 +25,7 @@ public class Subscription extends BaseEntity{
     private Article article;
 
     @Builder
-    public Subscription(Long id, Category category, String media) {
+    public Subscription(Long id, String category, String media) {
         this.id = id;
         this.category = category;
         this.media = media;

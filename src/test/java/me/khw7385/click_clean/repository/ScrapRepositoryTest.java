@@ -2,7 +2,6 @@ package me.khw7385.click_clean.repository;
 
 import me.khw7385.click_clean.config.TestConfig;
 import me.khw7385.click_clean.domain.Article;
-import me.khw7385.click_clean.domain.Category;
 import me.khw7385.click_clean.domain.Scrap;
 import me.khw7385.click_clean.domain.User;
 import org.assertj.core.api.Assertions;
@@ -45,7 +44,7 @@ public class ScrapRepositoryTest {
                 .body("뉴스 내용1")
                 .summary("뉴스 요약1")
                 .media("언론사1")
-                .category(Category.SOCIETY)
+                .category("사회")
                 .author("기자1")
                 .url("기사1.com")
                 .probability(BigDecimal.valueOf(11.1))
@@ -55,7 +54,7 @@ public class ScrapRepositoryTest {
                 .body("뉴스 내용2")
                 .summary("뉴스 요약2")
                 .media("언론사2")
-                .category(Category.SOCIETY)
+                .category("사회")
                 .author("기자2")
                 .url("기사2.com")
                 .probability(BigDecimal.valueOf(22.2))

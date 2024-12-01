@@ -50,7 +50,7 @@ public class ArticleViewService {
                 .body(article.getBody())
                 .author(article.getAuthor())
                 .media(article.getMedia())
-                .category(article.getCategory().getKoreanName())
+                .category(article.getCategory())
                 .url(article.getUrl())
                 .probability(article.getProbability())
                 .build();

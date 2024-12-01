@@ -25,9 +25,8 @@ public class Article extends BaseEntity{
     private String summary;
     @Column(nullable=false)
     private String media;
-    @Enumerated(value = EnumType.STRING)
     @Column(nullable = false)
-    private Category category;
+    private String category;
     @Column(nullable=false)
     private String author;
     @Column(nullable = false)
@@ -41,7 +40,7 @@ public class Article extends BaseEntity{
 
 
     @Builder
-    public Article(Long id, String title, String body, String summary, String media, Category category, String author, String url, BigDecimal probability) {
+    public Article(Long id, String title, String body, String summary, String media, String category, String author, String url, BigDecimal probability) {
         this.id = id;
         this.title = title;
         this.body = body;

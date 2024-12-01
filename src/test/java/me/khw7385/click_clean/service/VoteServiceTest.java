@@ -1,14 +1,12 @@
 package me.khw7385.click_clean.service;
 
 import me.khw7385.click_clean.domain.Article;
-import me.khw7385.click_clean.domain.Category;
 import me.khw7385.click_clean.domain.User;
 import me.khw7385.click_clean.domain.Vote;
 import me.khw7385.click_clean.dto.VoteDto;
 import me.khw7385.click_clean.exception.ClickCleanException;
 import me.khw7385.click_clean.exception.error_code.VoteErrorCode;
 import me.khw7385.click_clean.repository.ArticleRepository;
-import me.khw7385.click_clean.repository.ArticleRepositoryTest;
 import me.khw7385.click_clean.repository.UserRepository;
 import me.khw7385.click_clean.repository.VoteRepository;
 import org.assertj.core.api.Assertions;
@@ -46,7 +44,7 @@ public class VoteServiceTest {
                 .title("기사1")
                 .summary("요약1")
                 .media("언론사1")
-                .category(Category.ECONOMY)
+                .category("경제")
                 .author("작가1")
                 .probability(BigDecimal.valueOf(52.4))
                 .build();
