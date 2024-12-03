@@ -22,7 +22,7 @@ public class SearchService {
     }
     private SearchDto.Response toResponse(Article article){
         return SearchDto.Response.builder()
-                .articleId(article.getId())
+                .id(article.getId())
                 .title(article.getTitle())
                 .summary(article.getSummary())
                 .author(article.getAuthor())

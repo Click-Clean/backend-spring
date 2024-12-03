@@ -12,10 +12,10 @@ public class SearchDto {
     public record Command(String keyword){
     }
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public record Response(Long articleId, String title, String summary, String media, String category, String author, LocalDateTime createdAt, BigDecimal probability){
+    public record Response(Long id, String title, String summary, String media, String category, String author, LocalDateTime createdAt, BigDecimal probability){
         @Builder
-        public Response(Long articleId, String title, String summary, String media, String category, String author, LocalDateTime createdAt, BigDecimal probability) {
-            this.articleId = articleId;
+        public Response(Long id, String title, String summary, String media, String category, String author, LocalDateTime createdAt, BigDecimal probability) {
+            this.id = id;
             this.title = title;
             this.summary = summary;
             this.media = media;

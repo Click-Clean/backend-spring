@@ -1,11 +1,7 @@
 package me.khw7385.click_clean.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.Builder;
-import me.khw7385.click_clean.domain.Category;
 
 import java.math.BigDecimal;
 
@@ -17,10 +13,10 @@ public class ViewDto {
     }
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public record ArticleResponse(Long articleId, String title, String body, String media, String category, String author, String url, BigDecimal probability){
+    public record ArticleResponse(Long id, String title, String body, String media, String category, String author, String url, BigDecimal probability){
         @Builder
-        public ArticleResponse(Long articleId, String title, String body, String media, String category, String author, String url, BigDecimal probability) {
-            this.articleId = articleId;
+        public ArticleResponse(Long id, String title, String body, String media, String category, String author, String url, BigDecimal probability) {
+            this.id = id;
             this.title = title;
             this.body = body;
             this.media = media;
@@ -31,10 +27,10 @@ public class ViewDto {
         }
     }
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public record ViewResponse(Long articleId, String title){
+    public record ViewResponse(Long id, String title){
         @Builder
-        public ViewResponse(Long articleId, String title) {
-            this.articleId = articleId;
+        public ViewResponse(Long id, String title) {
+            this.id = id;
             this.title = title;
         }
     }

@@ -45,7 +45,7 @@ public class ArticleViewService {
 
     private ViewDto.ArticleResponse toArticleResponse(Article article){
         return ViewDto.ArticleResponse.builder()
-                .articleId(article.getId())
+                .id(article.getId())
                 .title(article.getTitle())
                 .body(article.getBody())
                 .author(article.getAuthor())
@@ -64,7 +64,7 @@ public class ArticleViewService {
 
     private ViewDto.ViewResponse toViewResponse(Article article){
         return ViewDto.ViewResponse.builder()
-                .articleId(article.getId())
+                .id(article.getId())
                 .title(article.getTitle())
                 .build();
     }

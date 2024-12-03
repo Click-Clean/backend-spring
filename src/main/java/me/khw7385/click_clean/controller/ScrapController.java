@@ -29,8 +29,8 @@ public class ScrapController {
             @ApiResponse(responseCode = "400", description = "기사 ID 에 해당하는 기사 없음, 사용자 ID에 해당하는 사용자 없음, 이미 스크랩한 기사입니다.")
     })
     @PostMapping("/api/scrap/save")
-    public ResponseEntity<Result> createScrap(@RequestBody ScrapDto.Request request, @RequestParam("userId") Long userId){
-        scrapService.saveScrap(request.toCommand(userId));
+    public ResponseEntity<Result> createScrap(@RequestBody ScrapDto.Request request, @RequestAttribute("userId") Long userId){
+        scrapService.saveScrap(request.toCommand(null, userId));
 
         return ResponseEntity.ok(new Result(HttpStatus.CREATED.value(), null));
     }
@@ -44,14 +44,11 @@ public class ScrapController {
             @ApiResponse(responseCode = "400", description = "사용자 ID에 해당하는 사용자 없음")
     })
     @GetMapping("/api/scraps")
-    public ResponseEntity<PageResult<List<ScrapDto.Response>>> getScraps(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("userId") Long userId){
+    public ResponseEntity<PageResult<List<ScrapDto.Response>>> getScraps(@RequestParam("page") int page, @RequestParam("size") int size, @RequestAttribute("userId") Long userId){
         List<ScrapDto.Response> scraps = scrapService.findScraps(new ScrapDto.Command(null, userId, null), page, size);
         return ResponseEntity.ok(new PageResult<List<ScrapDto.Response>>(HttpStatus.OK.value(), page, scraps.size(), scraps));
     }
     @Operation(summary = "스크랩 삭제", description = "스크랩 ID에 해당하는 스크랩 삭제")
-    @Parameters(value = {
-            @Parameter(name = "id", description = "스크랩 ID")
-    })
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "스크랩 삭제 완료"),
             @ApiResponse(responseCode = "400", description = "스크랩 ID 에 해당하는 스크랩 없음")

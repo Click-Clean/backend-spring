@@ -56,7 +56,7 @@ public class ScrapService {
     private ScrapDto.Response toResponse(Scrap scrap){
         Article article = scrap.getArticle();
         return ScrapDto.Response.builder()
-                .articleId(article.getId())
+                .id(article.getId())
                 .title(article.getTitle())
                 .summary(article.getSummary())
                 .media(article.getMedia())
