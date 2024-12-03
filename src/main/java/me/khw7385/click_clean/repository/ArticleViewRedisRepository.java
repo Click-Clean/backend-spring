@@ -23,7 +23,7 @@ public class ArticleViewRedisRepository {
         ValueOperations<String, String> operations = redisTemplate.opsForValue();
 
         String key = "article:" + articleId + ":user:"+userId;
-        operations.set(key, "viewed", 1, TimeUnit.MINUTES);
+        operations.set(key, "viewed", 3, TimeUnit.HOURS);
     }
 
     public boolean isViewed(String userId, Long articleId){
@@ -33,7 +33,7 @@ public class ArticleViewRedisRepository {
 
     public void extendExpiration(String userId, Long articleId){
         String key = "article:" + articleId + ":user:"+userId;
-        redisTemplate.expire(key, Duration.ofMinutes(1));
+        redisTemplate.expire(key, Duration.ofHours(3));
     }
 
     public void incrementViewCount(Long articleId){
